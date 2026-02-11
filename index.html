@@ -17,27 +17,26 @@
         }
         .container { text-align: center; padding: 20px; }
         
-        /* 1. Bigger container for the image */
         .image-wrapper {
-            width: 750px; /* Increased size */
-            height: 500px;
+            width: 90vw;
+            max-width: 1000px;
+            height: 60vh;
+            max-height: 600px;
             margin: 0 auto 20px;
             overflow: hidden;
             border-radius: 20px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
-        /* 2. Make the image fill the container perfectly */
         #main-image { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Fills area without stretching */
+            object-fit: contain;
             display: block;
         }
         #reset-image { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; /* Fills area without stretching */
+            width: 100% !important; 
+            height: 100% !important; 
+            object-fit: contain !important;
             display: block;
         }
 
@@ -65,12 +64,12 @@
             padding: 4px 8px; font-size: 10px;
             background: rgba(0,0,0,0.2); color: white;
             border: none; border-radius: 4px; cursor: pointer;
-            display: none; /* Hidden by default */
+            display: none;
         }
         #reset-image { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Fills area without stretching */
+            object-fit: cover;
             display: block;}
         .hidden { display: none; }
     </style>
@@ -78,8 +77,10 @@
 <body>
 
     <div class="container" id="main-container">
-        <img id="main-image" src="valentine-card-paula-deen.gif" alt="Asking...">
-        
+        <div class="image-wrapper">
+            <img id="main-image" src="valentine-card-paula-deen.gif" alt="Asking...">
+        </div>
+
         <h1 id="question">Will you be my Valentine?</h1>
 
         <div class="button-group" id="btnContainer">
@@ -88,7 +89,9 @@
         </div>
     </div>
     <div class="container" id="reset-container" style="display: none;">
-        <img id="reset-image" src="u_want_sum_fuk.jpg" alt="Sooooo...">
+        <div class="image-wrapper">
+            <img id="reset-image" src="u_want_sum_fuk.jpg" alt="Sooooo...">
+        </div>
         
         <div class="button-group" id="resetBtnContainer">
             <button id="resetYesBtn" class="btn" onclick="handleResetYes()">Yes</button>
@@ -121,6 +124,8 @@
             document.getElementById('reset-container').style.display = "block";
             document.getElementById('main-container').style.display = "none";
             document.getElementById('resetBtn').style.display = "none";
+            yesSize = 18;
+            paddingSize = 12;
         }
 
         function handleResetYes() {
